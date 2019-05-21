@@ -1,0 +1,310 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200vh;
+  transition: .5s linear;
+}
+
+section.active {
+  top: -100%;
+}
+
+button {
+  position: relative;
+  padding: 2vh 3vw;
+  border: .1vh solid #000;
+  font-size: 2vh;
+  font-weight: bold;
+  background-color: #fff;
+  letter-spacing: 2px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+button::first-letter {
+  text-transform: uppercase;
+}
+
+section+div {
+  position: fixed;
+  bottom: 1%;
+  left: 50%;
+  width: 3vw;
+  height: 3vw;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  font-size: 1.8vw;
+  color: #fff;
+  background-color: rgb(63, 169, 211);
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 0 2px 2px rgb(63, 169, 211);
+  transition: .5s linear, box-shadow .2s linear;
+}
+
+section+div:hover {
+  box-shadow: 0 0 4px 4px rgb(63, 169, 211);
+}
+
+section.active+div {
+  bottom: calc(99% - 3vw);
+}
+
+@keyframes lower {
+  0% {
+    top: -50%;
+  }
+
+  100% {
+    top: 150%;
+  }
+}
+
+@keyframes higher {
+  0% {
+    top: 150%;
+  }
+
+  100% {
+    top: -50%;
+  }
+}
+
+section+div>i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: .8s linear lower infinite;
+}
+
+section+div:hover>i {
+  animation-duration: .6s;
+}
+
+section.active+div>i {
+  transform: translate(-50%, -50%) rotate(180deg);
+  animation-name: higher;
+}
+
+/* first button */
+button:first-child {
+  transform: skewX(-30deg);
+}
+
+button:first-child>span {
+  display: block;
+  transform: skewX(30deg);
+  transition: .3s .2s linear;
+}
+
+button:first-child:hover>span {
+  transform: skewX(-12deg);
+}
+
+button:first-child::before,
+button:first-child::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -5%;
+  border: 1px solid #000;
+  transition: .5s linear;
+}
+
+button:first-child::after {
+  top: initial;
+  bottom: -5%;
+  left: 0;
+  right: 0;
+  transition: .4s .1s linear;
+}
+
+button:first-child:hover::before {
+  left: 105%;
+}
+
+button:first-child:hover::after {
+  bottom: 105%;
+}
+
+/* second button */
+button:nth-child(2) {
+  border-width: 4px;
+  border-radius: 10%;
+  box-shadow: 0 0 0 6px #fff, 0 0 0 10px #000;
+  transition: .5s linear, color .4s .1s linear;
+}
+
+button:nth-child(2)::before {
+  content: "";
+  position: absolute;
+  top: 110%;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background-color: #000;
+  transition: .5s linear;
+  z-index: -1;
+}
+
+button:nth-child(2):hover {
+  border-color: #fff;
+  color: #fff;
+  box-shadow: 0 0 0 6px gray, 0 0 0 10px #000;
+  transform: scale(1.4);
+}
+
+button:nth-child(2):hover::before {
+  top: 0;
+}
+
+/* third button */
+button:nth-child(3) {
+  padding: 0 60px;
+  height: 74px;
+}
+
+button:nth-child(3)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 74px;
+  height: 74px;
+  background-color: #000;
+  transform: rotate(45deg);
+  transition: .3s .2s linear;
+}
+
+button:nth-child(3):hover::before {
+  left: calc(74px*-1.41/2);
+  transition: .3s 0s linear;
+}
+
+button:nth-child(3)::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc(74px*1.41/2);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  transform: translate(-125%, -50%) scale(0);
+  background-color: rgba(255, 0, 0, 1);
+  transition: .2s 0s linear;
+}
+
+button:nth-child(3):hover::after {
+  transform: translate(-100%, -50%) scale(1);
+  transition: .2s .3s linear;
+}
+
+/* fourth button */
+button:nth-child(4) {
+  transition: .5s 0s linear;
+}
+
+button:nth-child(4)>span {
+  position: relative;
+}
+
+button:nth-child(4):hover {
+  color: rgb(255, 255, 255);
+  transition: .5s .2s linear;
+}
+
+button:nth-child(4)::before {
+  content: "";
+  position: absolute;
+  top: 49%;
+  bottom: 49%;
+  left: 101%;
+  width: 100%;
+  background-color: brown;
+  transition: .5s .2s linear, left .2s 0s linear;
+}
+
+button:nth-child(4):hover::before {
+  top: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* fifth button */
+button:nth-child(5) {
+  border-radius: 12%;
+  letter-spacing: 4px;
+  background-color: yellow;
+  box-shadow: 0 0 0 2px #000;
+  transition: .3s linear;
+}
+
+button:nth-child(5):hover {
+  letter-spacing: 8px;
+  box-shadow: 0 0 0 4px #000, 0 0 0 8px yellow, 0 0 0 12px #000;
+}
+
+/* last button */
+button:last-child {
+  height: 74px;
+  border: none;
+  border-radius: 20%;
+  letter-spacing: 2px;
+  color: #fff;
+  background-color: rgb(63, 169, 211);
+  transition: .2s .3s linear;
+}
+
+button:last-child:hover {
+  border-radius: 0;
+  transition: .2s 0s linear;
+}
+
+button:last-child::before,
+button:last-child::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  border: 37px solid transparent;
+  transition: .3s 0s linear;
+}
+
+button:last-child::before {
+  left: -4vw;
+  border-left: 3vw solid #fff;
+  border-right-width: 0;
+}
+
+button:last-child::after {
+  right: -4vw;
+  border-right: 3vw solid #fff;
+  border-left-width: 0;
+}
+
+button:last-child:hover::before {
+  left: 0;
+  transition: .3s .2s linear;
+}
+
+button:last-child:hover::after {
+  right: 0;
+  transition: .3s .2s linear;
+}
